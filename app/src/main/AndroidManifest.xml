@@ -19,7 +19,7 @@
             android:value="1" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="br.com.heiderlopes.meusgames.models" />
+            android:value="br.com.heiderlopes.meusgames.model" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
