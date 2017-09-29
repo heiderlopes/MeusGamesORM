@@ -7,10 +7,10 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:id="@+id/inputCodigoPlataforma">
 
         <EditText
-            android:id="@+id/etSiglaPlataforma"
             style="@style/edittext_form"
             android:hint="Código da plataforma" />
     </android.support.design.widget.TextInputLayout>
@@ -18,10 +18,10 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:id="@+id/inputDescricaoPlataforma">
 
         <EditText
-            android:id="@+id/etDescricaoPlataforma"
             style="@style/edittext_form"
             android:hint="Descrição da plataforma" />
     </android.support.design.widget.TextInputLayout>

@@ -214,15 +214,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sGenero = inputGenero.getEditText().getText().toString();
-                if(sGenero.length() > 0) {
+                if(sGenero.trim().equals("") ) {
+                    inputGenero.setError("Informe a descrição do genero");
+                } else {
                     inputGenero.setErrorEnabled(false);
                     Genero genero = new Genero();
                     genero.setDescricao(sGenero);
                     genero.save();
                     dialog.dismiss();
                     Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
-                } else {
-                    inputGenero.setError("Informe a descrição do genero");
                 }
             }
         });
@@ -243,21 +243,32 @@ public class MainActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.new_plataforma);
         dialog.setTitle("Nova Plataforma");
-        final EditText etDescricaoPlataforma = (EditText)dialog.findViewById(R.id.etDescricaoPlataforma);
 
-        final EditText etSiglaPlataforma = (EditText)dialog.findViewById(R.id.etSiglaPlataforma);
+        final TextInputLayout inputCodigoPlataforma = (TextInputLayout)dialog.findViewById(R.id.inputCodigoPlataforma);
+        final TextInputLayout inputDescricaoPlataforma = (TextInputLayout)dialog.findViewById(R.id.inputDescricaoPlataforma);
 
         Button btConfirmar = (Button) dialog.findViewById(R.id.btConfirmar);
 
         btConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Plataforma plataforma = new Plataforma();
-                plataforma.setDescricao(etDescricaoPlataforma.getText().toString());
-                plataforma.setSigla(etSiglaPlataforma.getText().toString());
-                plataforma.save();
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                String descricao = inputDescricaoPlataforma.getEditText().getText().toString();
+                String sigla = inputCodigoPlataforma.getEditText().getText().toString();
+
+                inputCodigoPlataforma.setError("* Campo obrigatório");
+                inputCodigoPlataforma.setErrorEnabled(sigla.trim().equals("") ? true : false);
+
+                inputDescricaoPlataforma.setError("* Campo obrigatório");
+                inputDescricaoPlataforma.setErrorEnabled(descricao.trim().equals("") ? true : false);
+
+                if(!sigla.trim().equals("") && !descricao.trim().equals("")) {
+                    Plataforma plataforma = new Plataforma();
+                    plataforma.setDescricao(descricao);
+                    plataforma.setSigla(sigla);
+                    plataforma.save();
+                    dialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -287,19 +298,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 List<Game> newGames = gameDao.findAllFields(newText);
                 inicializaLista(newGames);
-                /*if (TextUtils.isEmpty(newText)) {
-                    adapter.filter("");
-                    listView.clearTextFilter();
-                } else {
-                    adapter.filter(newText);
-                }*/
                 return true;
             }
         });
-
         return true;
     }
 }
