@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,7 +34,7 @@ import br.com.heiderlopes.meusgames.model.Plataforma;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView rvMeusGames;
+
     private GameAdapter mAdapter;
     private FloatingActionMenu fMenu;
 
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inicializaLista(List<Game> games) {
-        rvMeusGames = (RecyclerView) findViewById(R.id.rvMeusGames);
+        RecyclerView rvMeusGames = (RecyclerView) findViewById(R.id.rvMeusGames);
         mAdapter = new GameAdapter(this, games);
         rvMeusGames.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvMeusGames.setItemAnimator(new DefaultItemAnimator());
@@ -107,14 +106,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Abre o dialog para adicionar um novo game na lista e no banco
     private void dialogGame(final Game game) {
-        final boolean isInsert = game.getId() == null ? true : false;
+        final boolean isInsert = game.getId() == null;
         final Dialog dialog = new Dialog(this);
 
         dialog.setContentView(R.layout.new_game);
 
         dialog.setTitle("Novo Game");
 
-        final EditText etTitulo = (EditText)dialog.findViewById(R.id.etTitulo);
+        final TextInputLayout etTitulo = (TextInputLayout) dialog.findViewById(R.id.inputTitulo);
 
         Spinner spGenero = (Spinner)dialog.findViewById(R.id.spGenero);
 
@@ -124,25 +123,32 @@ public class MainActivity extends AppCompatActivity {
 
         initPlataformaSpinner(spPlataforma, game.getPlataforma());
 
-        etTitulo.setText(game.getTitulo());
+        etTitulo.getEditText().setText(game.getTitulo());
 
         Button btConfirmar = (Button) dialog.findViewById(R.id.btConfirmar);
 
         btConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.setTitulo(etTitulo.getText().toString());
-                game.setGenero(generoSelecionado);
-                game.setPlataforma(plataformaSelecionada);
-                game.save();
+                String titulo = etTitulo.getEditText().getText().toString();
+                if(titulo.trim().equals("")){
+                    etTitulo.setError("* Campo obrigatório");
+                } else {
+                    etTitulo.setErrorEnabled(false);
+                    game.setTitulo(etTitulo.getEditText().getText().toString());
+                    game.setGenero(generoSelecionado);
+                    game.setPlataforma(plataformaSelecionada);
+                    game.save();
 
-                if (isInsert)
-                    mAdapter.add(game);
+                    if (isInsert)
+                        mAdapter.add(game);
 
-                mAdapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
 
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

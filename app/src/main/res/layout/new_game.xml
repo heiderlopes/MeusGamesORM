@@ -7,10 +7,10 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:id="@+id/inputTitulo">
 
         <EditText
-            android:id="@+id/etTitulo"
             android:hint="Informe o titulo"
             style="@style/edittext_form"/>
 
