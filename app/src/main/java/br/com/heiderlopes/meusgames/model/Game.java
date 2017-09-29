@@ -13,6 +13,9 @@ public class Game extends Model {
     @Column(name = "genero_id")
     private Genero genero;
 
+    @Column(name = "plataforma_id")
+    private Plataforma plataforma;
+
     public String getTitulo() {
         return titulo;
     }
@@ -27,5 +30,13 @@ public class Game extends Model {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public Plataforma getPlataforma() {
+        return plataforma;
+    }
+
+    public void setPlataforma(Plataforma plataforma) {
+        this.plataforma = plataforma;
     }
 }

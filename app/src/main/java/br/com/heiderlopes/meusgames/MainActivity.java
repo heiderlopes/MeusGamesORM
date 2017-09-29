@@ -29,8 +29,10 @@ import br.com.heiderlopes.meusgames.adapter.CustomSpinnerAdapter;
 import br.com.heiderlopes.meusgames.adapter.GameAdapter;
 import br.com.heiderlopes.meusgames.dao.GameDAO;
 import br.com.heiderlopes.meusgames.dao.GeneroDAO;
+import br.com.heiderlopes.meusgames.dao.PlataformaDAO;
 import br.com.heiderlopes.meusgames.model.Game;
 import br.com.heiderlopes.meusgames.model.Genero;
+import br.com.heiderlopes.meusgames.model.Plataforma;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionMenu fMenu;
 
     private Genero generoSelecionado;
+    private Plataforma plataformaSelecionada;
 
     private GameDAO gameDao;
 
@@ -109,9 +112,13 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText etTitulo = (EditText)dialog.findViewById(R.id.etTitulo);
 
-        Spinner spinnerGenero = (Spinner)dialog.findViewById(R.id.spGenero);
+        Spinner spGenero = (Spinner)dialog.findViewById(R.id.spGenero);
 
-        initGeneroSpinner(spinnerGenero, game.getGenero());
+        Spinner spPlataforma = (Spinner)dialog.findViewById(R.id.spPlataforma);
+
+        initGeneroSpinner(spGenero, game.getGenero());
+
+        initPlataformaSpinner(spPlataforma, game.getPlataforma());
 
         etTitulo.setText(game.getTitulo());
 
@@ -122,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 game.setTitulo(etTitulo.getText().toString());
                 game.setGenero(generoSelecionado);
+                game.setPlataforma(plataformaSelecionada);
                 game.save();
 
                 if (isInsert)
@@ -161,6 +169,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 generoSelecionado = (Genero) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void initPlataformaSpinner(Spinner spinner, Plataforma plataforma) {
+        PlataformaDAO plataformaDAO = new PlataformaDAO();
+
+        List<Plataforma> plataformas = plataformaDAO.findAll();
+
+        CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(this, plataformas);
+        spinner.setAdapter(customSpinnerAdapter);
+
+        spinner.setSelection(plataformas.indexOf(plataforma));
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                plataformaSelecionada = (Plataforma) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -214,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                List<Game> newGames = gameDao.findBy(newText);
+                List<Game> newGames = gameDao.findAllFields(newText);
                 inicializaLista(newGames);
                 /*if (TextUtils.isEmpty(newText)) {
                     adapter.filter("");
