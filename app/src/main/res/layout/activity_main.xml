@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/puzzle"
             fab:fab_size="mini"
-            fab:fab_label="Novo Genero" />
+            fab:fab_label="Novo Genero"
+            android:onClick="novoGenero"/>
 
     </com.github.clans.fab.FloatingActionMenu>
 

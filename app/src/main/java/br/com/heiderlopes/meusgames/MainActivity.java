@@ -82,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
         dialogGame(new Game());
     }
 
+    public void novoGenero(View v) {
+        fMenu.close(true);
+        dialogGenero();
+    }
+
     // Abre o dialog para adicionar um novo game na lista e no banco
     private void dialogGame(final Game game) {
         final boolean isInsert = game.getId() == null ? true : false;
@@ -151,5 +156,35 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    private void dialogGenero() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.new_genero);
+        dialog.setTitle("Novo Genero");
+        final EditText etGenero = (EditText)dialog.findViewById(R.id.etGenero);
+        Button btConfirmar = (Button) dialog.findViewById(R.id.btConfirmar);
+
+        btConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Genero genero = new Genero();
+                genero.setDescricao(etGenero.getText().toString());
+                genero.save();
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btCancelar = (Button) dialog.findViewById(R.id.btCancelar);
+
+        btCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }
