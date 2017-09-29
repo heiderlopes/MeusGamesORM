@@ -10,7 +10,7 @@
 
         <EditText
             style="@style/edittext_form"
-            android:hint="Informe o genero" />
+            android:hint="@string/hint_genero" />
     </android.support.design.widget.TextInputLayout>
 
     <include layout="@layout/botoes_dialog" />

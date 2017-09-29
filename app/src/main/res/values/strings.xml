@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">MeusGames</string>
+    <string name="label_apagar_sucesso">Dado apagado com sucesso</string>
+    <string name="label_novo_game">Novo Game</string>
+    <string name="label_campo_obrigatorio">* Campo obrigatório</string>
+    <string name="label_gravado_com_sucesso">Dado gravado com sucesso!</string>
+    <string name="label_novo_genero">Novo Genero</string>
+    <string name="mensagem_erro_genero_nao_preenchido">Informe a descrição do genero</string>
+    <string name="label_nova_plataforma">Nova Plataforma</string>
+    <string name="label_confirmar">Confirmar</string>
+    <string name="label_cancelar">Cancelar</string>
+    <string name="hint_titulo">Informe o titulo</string>
+    <string name="label_genero">Genero</string>
+    <string name="label_plataforma">Plataforma</string>
+    <string name="hint_genero">Informe o genero</string>
+    <string name="hint_codigo_plataforma">Código da plataforma</string>
+    <string name="hint_descricao_plataforma">Descrição da plataforma</string>
 </resources>

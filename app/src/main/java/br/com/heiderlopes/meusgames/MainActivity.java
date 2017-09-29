@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_apagar:
                 mAdapter.getGameSelected().delete();
                 mAdapter.removeGameSelected();
-                Toast.makeText(this, "Game apagado com sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.label_apagar_sucesso, Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.menu_editar:
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.setContentView(R.layout.new_game);
 
-        dialog.setTitle("Novo Game");
+        dialog.setTitle(R.string.label_novo_game);
 
         final TextInputLayout etTitulo = (TextInputLayout) dialog.findViewById(R.id.inputTitulo);
 
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String titulo = etTitulo.getEditText().getText().toString();
                 if(titulo.trim().equals("")){
-                    etTitulo.setError("* Campo obrigatório");
+                    etTitulo.setError(getString(R.string.label_campo_obrigatorio));
                 } else {
                     etTitulo.setErrorEnabled(false);
                     game.setTitulo(etTitulo.getEditText().getText().toString());
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     mAdapter.notifyDataSetChanged();
 
                     dialog.dismiss();
-                    Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.label_gravado_com_sucesso, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
     private void dialogGenero() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.new_genero);
-        dialog.setTitle("Novo Genero");
+        dialog.setTitle(R.string.label_novo_genero);
         final TextInputLayout inputGenero = (TextInputLayout) dialog.findViewById(R.id.inputGenero);
         Button btConfirmar = (Button) dialog.findViewById(R.id.btConfirmar);
 
@@ -221,14 +221,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String sGenero = inputGenero.getEditText().getText().toString();
                 if(sGenero.trim().equals("") ) {
-                    inputGenero.setError("Informe a descrição do genero");
+                    inputGenero.setError(getString(R.string.mensagem_erro_genero_nao_preenchido));
                 } else {
                     inputGenero.setErrorEnabled(false);
                     Genero genero = new Genero();
                     genero.setDescricao(sGenero);
                     genero.save();
                     dialog.dismiss();
-                    Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.label_gravado_com_sucesso, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
     private void dialogPlataforma() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.new_plataforma);
-        dialog.setTitle("Nova Plataforma");
+        dialog.setTitle(R.string.label_nova_plataforma);
 
         final TextInputLayout inputCodigoPlataforma = (TextInputLayout)dialog.findViewById(R.id.inputCodigoPlataforma);
         final TextInputLayout inputDescricaoPlataforma = (TextInputLayout)dialog.findViewById(R.id.inputDescricaoPlataforma);
@@ -261,10 +261,10 @@ public class MainActivity extends AppCompatActivity {
                 String descricao = inputDescricaoPlataforma.getEditText().getText().toString();
                 String sigla = inputCodigoPlataforma.getEditText().getText().toString();
 
-                inputCodigoPlataforma.setError("* Campo obrigatório");
+                inputCodigoPlataforma.setError(getString(R.string.label_campo_obrigatorio));
                 inputCodigoPlataforma.setErrorEnabled(sigla.trim().equals("") ? true : false);
 
-                inputDescricaoPlataforma.setError("* Campo obrigatório");
+                inputDescricaoPlataforma.setError(getString(R.string.label_campo_obrigatorio));
                 inputDescricaoPlataforma.setErrorEnabled(descricao.trim().equals("") ? true : false);
 
                 if(!sigla.trim().equals("") && !descricao.trim().equals("")) {
@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                     plataforma.setSigla(sigla);
                     plataforma.save();
                     dialog.dismiss();
-                    Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.label_gravado_com_sucesso, Toast.LENGTH_SHORT).show();
                 }
             }
         });

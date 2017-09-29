@@ -9,14 +9,14 @@
         android:id="@+id/inputTitulo">
 
         <EditText
-            android:hint="Informe o titulo"
+            android:hint="@string/hint_titulo"
             style="@style/edittext_form"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <TextView
         style="@style/label__spinner_form"
-        android:text="Genero"/>
+        android:text="@string/label_genero"/>
 
     <Spinner
         android:id="@+id/spGenero"
@@ -24,7 +24,7 @@
 
     <TextView
         style="@style/label__spinner_form"
-        android:text="Plataforma"/>
+        android:text="@string/label_plataforma"/>
 
     <Spinner
         style="@style/spinner_form"

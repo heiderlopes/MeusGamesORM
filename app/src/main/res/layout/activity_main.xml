@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/gamepad"
             fab:fab_size="mini"
-            fab:fab_label="Novo Game"
+            fab:fab_label="@string/label_novo_game"
             android:onClick="novoGame" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/puzzle"
             fab:fab_size="mini"
-            fab:fab_label="Novo Genero"
+            fab:fab_label="@string/label_novo_genero"
             android:onClick="novoGenero"/>
 
         <com.github.clans.fab.FloatingActionButton
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/videogame"
             fab:fab_size="mini"
-            fab:fab_label="Nova Plataforma"
+            fab:fab_label="@string/label_nova_plataforma"
             android:onClick="novaPlataforma"/>
 
     </com.github.clans.fab.FloatingActionMenu>

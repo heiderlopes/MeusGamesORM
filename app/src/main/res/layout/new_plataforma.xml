@@ -10,7 +10,7 @@
 
         <EditText
             style="@style/edittext_form"
-            android:hint="Código da plataforma" />
+            android:hint="@string/hint_codigo_plataforma" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -19,7 +19,7 @@
 
         <EditText
             style="@style/edittext_form"
-            android:hint="Descrição da plataforma" />
+            android:hint="@string/hint_descricao_plataforma" />
     </android.support.design.widget.TextInputLayout>
 
     <include layout="@layout/botoes_dialog" />

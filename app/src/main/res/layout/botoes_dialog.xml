@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:background="@android:color/transparent"
-        android:text="Cancelar"
+        android:text="@string/label_cancelar"
         android:textColor="@color/colorPrimary" />
 
     <Button
@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:background="@android:color/transparent"
-        android:text="Confirmar"
+        android:text="@string/label_confirmar"
         android:textColor="@color/colorPrimary" />
 </LinearLayout>
