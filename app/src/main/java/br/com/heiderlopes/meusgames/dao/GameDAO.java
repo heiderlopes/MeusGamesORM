@@ -13,4 +13,12 @@ public class GameDAO {
                 .orderBy("titulo ASC")
                 .execute();
     }
+
+    public List<Game> findBy(String titulo) {
+        return new Select()
+                .from(Game.class)
+                .where("titulo LIKE ?", new String[]{'%' + titulo+ '%'})
+                .orderBy("titulo ASC")
+                .execute();
+    }
 }

@@ -21,7 +21,8 @@
             android:name="AA_MODELS"
             android:value="br.com.heiderlopes.meusgames.model" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,6 +7,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,13 +48,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         fMenu = (FloatingActionMenu) findViewById(R.id.fMenu);
         gameDao = new GameDAO();
-        inicializaLista();
+        setupToolbar();
+        inicializaLista(new ArrayList<Game>());
         carregaMeusGames();
     }
 
-    private void inicializaLista() {
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void inicializaLista(List<Game> games) {
         rvMeusGames = (RecyclerView) findViewById(R.id.rvMeusGames);
-        mAdapter = new GameAdapter(this, new ArrayList<Game>());
+        mAdapter = new GameAdapter(this, games);
         rvMeusGames.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvMeusGames.setItemAnimator(new DefaultItemAnimator());
         rvMeusGames.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -186,5 +197,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu) {
+        getMenuInflater().inflate( R.menu.main_menu, menu);
+
+        MenuItem myActionMenuItem = menu.findItem( R.id.action_search);
+        final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                List<Game> newGames = gameDao.findBy(newText);
+                inicializaLista(newGames);
+                /*if (TextUtils.isEmpty(newText)) {
+                    adapter.filter("");
+                    listView.clearTextFilter();
+                } else {
+                    adapter.filter(newText);
+                }*/
+                return true;
+            }
+        });
+
+        return true;
     }
 }
