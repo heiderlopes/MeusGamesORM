@@ -22,12 +22,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     public class GameViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnCreateContextMenuListener{
 
-        public TextView tvTitulo, tvGenero;
+        public TextView tvTitulo, tvGenero, tvPlataforma;
 
         public GameViewHolder(View view) {
             super(view);
             tvTitulo = (TextView) view.findViewById(R.id.tvTitulo);
             tvGenero = (TextView) view.findViewById(R.id.tvGenero);
+            tvPlataforma = (TextView) view.findViewById(R.id.tvPlataforma);
             view.setOnClickListener(this);
             view.setOnCreateContextMenuListener(this);
         }
@@ -47,10 +48,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         }
     }
 
-    public int getLastPositionSelected() {
-        return lastPositionSelected;
-    }
-
     public GameAdapter(Activity activity, List<Game> games) {
         this.activity = activity;
         this.games = games;
@@ -65,9 +62,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     @Override
     public void onBindViewHolder(GameViewHolder holder, int position) {
-        Game movie = games.get(position);
-        holder.tvTitulo.setText(movie.getTitulo());
-        holder.tvGenero.setText(movie.getGenero().getDescricao());
+        Game game = games.get(position);
+        holder.tvTitulo.setText(game.getTitulo());
+        holder.tvGenero.setText(game.getGenero().getDescricao());
+        holder.tvPlataforma.setText(game.getPlataforma().getDescricao());
     }
 
     @Override
