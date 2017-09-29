@@ -1,6 +1,7 @@
 package br.com.heiderlopes.meusgames;
 
 import android.app.Dialog;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,8 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -208,17 +207,23 @@ public class MainActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.new_genero);
         dialog.setTitle("Novo Genero");
-        final EditText etGenero = (EditText)dialog.findViewById(R.id.etGenero);
+        final TextInputLayout inputGenero = (TextInputLayout) dialog.findViewById(R.id.inputGenero);
         Button btConfirmar = (Button) dialog.findViewById(R.id.btConfirmar);
 
         btConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Genero genero = new Genero();
-                genero.setDescricao(etGenero.getText().toString());
-                genero.save();
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                String sGenero = inputGenero.getEditText().getText().toString();
+                if(sGenero.length() > 0) {
+                    inputGenero.setErrorEnabled(false);
+                    Genero genero = new Genero();
+                    genero.setDescricao(sGenero);
+                    genero.save();
+                    dialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+                } else {
+                    inputGenero.setError("Informe a descrição do genero");
+                }
             }
         });
 
