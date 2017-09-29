@@ -4,32 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/etTitulo"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Informe o titulo" />
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/etTitulo"
+            android:hint="Informe o titulo"
+            style="@style/edittext_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        style="@style/label__spinner_form"
+        android:text="Genero"/>
 
     <Spinner
         android:id="@+id/spGenero"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:padding="8dp" />
+        style="@style/spinner_form" />
+
+    <TextView
+        style="@style/label__spinner_form"
+        android:text="Plataforma"/>
 
     <Spinner
-        android:id="@+id/spPlataforma"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:padding="8dp" />
+        style="@style/spinner_form"
+        android:id="@+id/spPlataforma" />
 
-    <include layout="@layout/botoes_dialog"/>
+    <include layout="@layout/botoes_dialog" />
 
 </LinearLayout>

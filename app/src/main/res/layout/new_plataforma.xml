@@ -4,25 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/etSiglaPlataforma"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Código da plataforma" />
+        android:layout_marginTop="8dp">
 
-    <EditText
-        android:id="@+id/etDescricaoPlataforma"
+        <EditText
+            android:id="@+id/etSiglaPlataforma"
+            style="@style/edittext_form"
+            android:hint="Código da plataforma" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Descrição da plataforma" />
+        android:layout_marginTop="8dp">
 
-    <include layout="@layout/botoes_dialog"/>
+        <EditText
+            android:id="@+id/etDescricaoPlataforma"
+            style="@style/edittext_form"
+            android:hint="Descrição da plataforma" />
+    </android.support.design.widget.TextInputLayout>
+
+    <include layout="@layout/botoes_dialog" />
 
 </LinearLayout>
