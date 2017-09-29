@@ -9,6 +9,9 @@ import br.com.heiderlopes.meusgames.adapter.ItemCustomSpinner;
 @Table(name = "plataforma")
 public class Plataforma extends Model implements ItemCustomSpinner {
 
+    @Column(name = "sigla")
+    private String sigla;
+
     @Column(name = "descricao")
     private String descricao;
 
@@ -20,8 +23,16 @@ public class Plataforma extends Model implements ItemCustomSpinner {
         this.descricao = descricao;
     }
 
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
     @Override
     public String getDescricaoSpinner() {
-        return descricao;
+        return sigla + " - " + descricao;
     }
 }

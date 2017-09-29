@@ -33,6 +33,7 @@ public class GameDAO {
                 .innerJoin(Genero.class)
                 .on("game.genero_id = genero.id")
                 .where("plataforma.descricao LIKE ?", new String[]{'%' + q + '%'})
+                .or("plataforma.sigla LIKE ?", new String[]{'%' + q + '%'})
                 .or("game.titulo LIKE ?", new String[]{'%' + q + '%'})
                 .or("genero.descricao LIKE ?", new String[]{'%' + q + '%'})
                 .orderBy("descricao ASC")

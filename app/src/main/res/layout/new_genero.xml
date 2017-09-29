@@ -14,29 +14,6 @@
         android:layout_marginTop="16dp"
         android:hint="Informe o genero" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btCancelar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:background="@android:color/transparent"
-            android:text="Cancelar"
-            android:textColor="@color/colorPrimary"/>
-
-        <Button
-            android:id="@+id/btConfirmar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:background="@android:color/transparent"
-            android:text="Confirmar"
-            android:textColor="@color/colorPrimary"/>
-    </LinearLayout>
+    <include layout="@layout/botoes_dialog"/>
 
 </LinearLayout>

@@ -6,29 +6,22 @@
 
 
     <EditText
-        android:id="@+id/etTitulo"
+        android:id="@+id/etSiglaPlataforma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:hint="Informe o titulo" />
+        android:hint="Código da plataforma" />
 
-    <Spinner
-        android:id="@+id/spGenero"
+    <EditText
+        android:id="@+id/etDescricaoPlataforma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:padding="8dp" />
-
-    <Spinner
-        android:id="@+id/spPlataforma"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:padding="8dp" />
+        android:layout_marginTop="16dp"
+        android:hint="Descrição da plataforma" />
 
     <include layout="@layout/botoes_dialog"/>
 

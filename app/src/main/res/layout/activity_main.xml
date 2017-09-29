@@ -55,6 +55,15 @@
             fab:fab_label="Novo Genero"
             android:onClick="novoGenero"/>
 
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btNovaPlataforma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/videogame"
+            fab:fab_size="mini"
+            fab:fab_label="Nova Plataforma"
+            android:onClick="novaPlataforma"/>
+
     </com.github.clans.fab.FloatingActionMenu>
 
 </RelativeLayout>

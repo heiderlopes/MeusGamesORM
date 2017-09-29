@@ -101,6 +101,11 @@ public class MainActivity extends AppCompatActivity {
         dialogGenero();
     }
 
+    public void novaPlataforma(View v) {
+        fMenu.close(true);
+        dialogPlataforma();
+    }
+
     // Abre o dialog para adicionar um novo game na lista e no banco
     private void dialogGame(final Game game) {
         final boolean isInsert = game.getId() == null ? true : false;
@@ -212,6 +217,40 @@ public class MainActivity extends AppCompatActivity {
                 Genero genero = new Genero();
                 genero.setDescricao(etGenero.getText().toString());
                 genero.save();
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btCancelar = (Button) dialog.findViewById(R.id.btCancelar);
+
+        btCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void dialogPlataforma() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.new_plataforma);
+        dialog.setTitle("Nova Plataforma");
+        final EditText etDescricaoPlataforma = (EditText)dialog.findViewById(R.id.etDescricaoPlataforma);
+
+        final EditText etSiglaPlataforma = (EditText)dialog.findViewById(R.id.etSiglaPlataforma);
+
+        Button btConfirmar = (Button) dialog.findViewById(R.id.btConfirmar);
+
+        btConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Plataforma plataforma = new Plataforma();
+                plataforma.setDescricao(etDescricaoPlataforma.getText().toString());
+                plataforma.setSigla(etSiglaPlataforma.getText().toString());
+                plataforma.save();
                 dialog.dismiss();
                 Toast.makeText(MainActivity.this, "Dado gravado com sucesso!", Toast.LENGTH_SHORT).show();
             }
